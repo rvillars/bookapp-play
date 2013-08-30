@@ -2,7 +2,8 @@
 
 var controllers = angular.module('controllers', ['services']);
 
-function BookController($scope, Book, Author) {
+controllers.controller('BookController', ['$scope', 'Book', 'Author', function($scope, Book, Author) {
+
     $scope.currentBook = new Book();
     $scope.currentBook.releaseDate = new Date();
     $scope.books = Book.query();
@@ -22,7 +23,7 @@ function BookController($scope, Book, Author) {
         	});
         } else {
             Book.update($scope.currentBook);
-        }        
+        }
         $scope.cancel();
     };
 
@@ -35,15 +36,9 @@ function BookController($scope, Book, Author) {
 		$scope.books.splice(index, 1);
 		Book.remove({bookId:id});
     };
-}
+}]);
 
-function filterById(array, id) {
-    return array.filter(function (object) {
-    	return object.id == id;
-    })[0];
-}
-
-function AuthorController($scope, Author) {
+controllers.controller('AuthorController', ['$scope', 'Author', function($scope, Author) {
     $scope.currentAuthor = new Author();
     $scope.authors = Author.query();
     $scope.showId = false;
@@ -60,7 +55,7 @@ function AuthorController($scope, Author) {
         	});
         } else {
             Author.update($scope.currentAuthor);
-        }        
+        }
         $scope.cancel();
     };
 
@@ -72,8 +67,14 @@ function AuthorController($scope, Author) {
 		$scope.authors.splice(index, 1);
 		Author.remove({authorId:id});
     };
-}
+}]);
 
-function NavController($scope, $rootScope, $route) {
+controllers.controller('NavController', ['$scope', '$rootScope', '$route', function($scope, $rootScope, $route) {
 	$rootScope.route = $route;
+}]);
+
+function filterById(array, id) {
+    return array.filter(function (object) {
+        return object.id == id;
+    })[0];
 }
