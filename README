@@ -1,4 +1,4 @@
-bookapp-play
+bookapp-play (!https://travis-ci.org/rvillars/bookapp-play.png?branch=master!:https://travis-ci.org/rvillars/bookapp-play)
 ============
 
 Scala REST application with Play2, SLICK, AngularJS
